@@ -12,22 +12,21 @@ import java.util.List;
 
 @Component
 @Repository
-public interface PeopleRepository extends JpaRepository<Person, Long> {
-    public List<Person> findByFamilyId(long id);
+public interface PeopleRepository extends JpaRepository<Person, String> {
+    public List<Person> findByFamilyId(String id);
 
-    public List<Person> findByFamilyIdAndUnivId(long familyId, long univId);
+    public List<Person> findByFamilyIdAndUnivId(String familyId, String univId);
 
     @Query(value = "select p.univId , sum(p.power) as totalPower from Person p where p.familyId=:id group by p.univId")
-    public List<Object[]>findFamilyPowerOfAllUniverses(@Param("id") long id);
+    public List<Object[]> findFamilyPowerOfAllUniverses(@Param("id") String id);
 
     @Modifying
     @Query(value = "update Person p set p.power=:power where p.id=:id")
-    public void updatePower(@Param("id") long id, @Param("power") int power);
+    public void updatePower(@Param("id") String id, @Param("power") String power);
 
     @Modifying
     @Query(value = "update Person p set p.univId=:univId where p.id=:id")
-    public void updateUniverse(@Param("id") long id, @Param("univId") long univId);
-
+    public void updateUniverse(@Param("id") String id, @Param("univId") String univId);
 
 
 }

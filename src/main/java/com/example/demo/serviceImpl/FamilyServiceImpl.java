@@ -2,9 +2,9 @@ package com.example.demo.serviceImpl;
 
 import com.example.demo.model.Family;
 import com.example.demo.model.FamilyResquestDto;
+import com.example.demo.utills.PersonIdGenerator;
 import com.example.demo.model.UnivFamily;
 import com.example.demo.repository.FamilyRepository;
-import com.example.demo.repository.PeopleRepository;
 import com.example.demo.repository.UnivFamilyRepository;
 import com.example.demo.service.FamilyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Transactional
-    public Optional<Family> findFamilyById(long id) {
+    public Optional<Family> findFamilyById(String id) {
         return familyRepository.findById(id);
     }
 
@@ -36,9 +36,9 @@ public class FamilyServiceImpl implements FamilyService {
     public Family createFamily(FamilyResquestDto familyResquestDto) {
         Family family = new Family();
         UnivFamily univFamily = new UnivFamily();
-        family.setId(familyResquestDto.getId());
         family.setName(familyResquestDto.getName());
         family.setDescription(familyResquestDto.getDescription());
+        family.setId(PersonIdGenerator.getId());
         family = familyRepository.save(family);
         univFamily.setUniverseId(familyResquestDto.getUnivId());
         univFamily.setFamilyId(family.getId());
@@ -48,7 +48,7 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Transactional
-    public void deleteFamilyById(long id) {
+    public void deleteFamilyById(String id) {
         univFamilyRepository.deleteAllByFamilyId(id);
         familyRepository.deleteById(id);
     }

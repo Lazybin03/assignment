@@ -1,14 +1,14 @@
 package com.example.demo.model;
 
 public class PowerPack {
-    long id;
+    String id;
     int power;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -20,7 +20,7 @@ public class PowerPack {
         this.power = power;
     }
 
-    public PowerPack(long id, int power) {
+    public PowerPack(String id, int power) {
         this.id = id;
         this.power = power;
     }

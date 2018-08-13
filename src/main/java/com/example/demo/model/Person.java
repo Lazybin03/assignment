@@ -10,18 +10,17 @@ import javax.validation.constraints.NotNull;
 
 public class Person {
     @Id
-    @NotNull
-    private Long id;
+    private String id;
     @NotBlank
     private String name;
     @NotNull
     private int power;
     @NotNull
-    private Long univId;
+    private String univId;
     @NotNull
-    private Long familyId;
+    private String familyId;
 
-    public Person(@NotNull Long id, @NotBlank String name, @NotNull int power, @NotNull Long univId, @NotNull Long familyId) {
+    public Person(String id, @NotBlank String name, @NotNull int power, @NotNull String univId, @NotNull String familyId) {
         this.id = id;
         this.name = name;
         this.power = power;
@@ -32,27 +31,27 @@ public class Person {
     public Person() {
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getUnivId() {
+    public String getUnivId() {
         return univId;
     }
 
-    public void setUnivId(Long univId) {
+    public void setUnivId(String univId) {
         this.univId = univId;
     }
 
-    public Long getFamilyId() {
+    public String getFamilyId() {
         return familyId;
     }
 
-    public void setFamilyId(Long familyId) {
+    public void setFamilyId(String familyId) {
         this.familyId = familyId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

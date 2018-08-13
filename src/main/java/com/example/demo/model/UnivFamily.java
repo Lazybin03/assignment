@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
 public class UnivFamily {
     @Id
     @NotNull
-    private long id;
+    private String id;
     @NotNull
-    private long universeId;
+    private String universeId;
     @NotNull
-    private long familyId;
+    private String familyId;
 
-    public UnivFamily(@NotNull Long id, @NotNull Long universeId, @NotNull Long familyId) {
+    public UnivFamily(@NotNull String id, @NotNull String universeId, @NotNull String familyId) {
         this.id = id;
         this.universeId = universeId;
         this.familyId = familyId;
@@ -26,27 +26,27 @@ public class UnivFamily {
     public UnivFamily() {
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public long getUniverseId() {
+    public String getUniverseId() {
         return universeId;
     }
 
-    public void setUniverseId(Long universeId) {
+    public void setUniverseId(String universeId) {
         this.universeId = universeId;
     }
 
-    public Long getFamilyId() {
+    public String getFamilyId() {
         return familyId;
     }
 
-    public void setFamilyId(Long familyId) {
+    public void setFamilyId(String familyId) {
         this.familyId = familyId;
     }
 

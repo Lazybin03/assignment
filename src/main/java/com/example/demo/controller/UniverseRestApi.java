@@ -28,7 +28,7 @@ public class UniverseRestApi {
     }
 
     @GetMapping("/{id}")
-    public CustomResponse getUniverseById(@PathVariable(value = "id") long univID) {
+    public CustomResponse getUniverseById(@PathVariable(value = "id") String univID) {
         Optional<Universe> universe = universeService.findUnivreseById(univID);
         if (universe != null)
             return new CustomResponse("universe", universe);
@@ -46,7 +46,7 @@ public class UniverseRestApi {
     }
 
     @DeleteMapping("/{id}")
-    public CustomResponse deleteUniverse(@PathVariable(value = "id") long univID) {
+    public CustomResponse deleteUniverse(@PathVariable(value = "id") String univID) {
         try {
             universeService.deleteUniverse(univID);
             return new CustomResponse("success", "successfullly deleted universe with id:" + univID);

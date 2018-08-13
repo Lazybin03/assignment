@@ -8,10 +8,10 @@ import java.util.Optional;
 public interface PeopleService {
     public List<Person> getAllPeople();
 
-    public Optional<Person> findPeopleById(long id);
+    public Optional<Person> findPeopleById(String id);
 
     public Person createPerson(Person person);
 
-    public void deletePersonById(long id);
+    public void deletePersonById(String id);
 
 }

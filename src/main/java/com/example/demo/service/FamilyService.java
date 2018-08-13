@@ -11,11 +11,11 @@ import java.util.Optional;
 public interface FamilyService {
     public List<Family> getAllFamilies();
 
-    public Optional<Family> findFamilyById(long id);
+    public Optional<Family> findFamilyById(String id);
 
     public Family createFamily(FamilyResquestDto family);
 
-    public void deleteFamilyById(long id);
+    public void deleteFamilyById(String id);
 
 
 }

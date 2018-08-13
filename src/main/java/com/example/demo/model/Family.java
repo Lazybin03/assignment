@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -8,12 +10,12 @@ import javax.validation.constraints.NotNull;
 @Table(name = "families", indexes = {@Index(name = "id", unique = true, columnList = "id")})
 public class Family {
     @Id
-    private long id;
+    private String id;
     @NotBlank
     private String name;
     private String description;
 
-    public Family(long id, @NotBlank String name, String description) {
+    public Family(String id, @NotBlank String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -22,10 +24,10 @@ public class Family {
     public Family() {
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

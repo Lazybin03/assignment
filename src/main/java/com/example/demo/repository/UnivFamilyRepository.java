@@ -8,10 +8,10 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Repository
-public interface UnivFamilyRepository extends JpaRepository<UnivFamily, Long> {
-    public List<UnivFamily> findByUniverseId(long id);
+public interface UnivFamilyRepository extends JpaRepository<UnivFamily, String> {
+    public List<UnivFamily> findByUniverseId(String id);
 
-    public List<UnivFamily> findByFamilyId(long id);
+    public List<UnivFamily> findByFamilyId(String id);
 
-    public void deleteAllByFamilyId(long id);
+    public void deleteAllByFamilyId(String id);
 }

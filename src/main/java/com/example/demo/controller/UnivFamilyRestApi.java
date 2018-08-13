@@ -31,7 +31,7 @@ public class UnivFamilyRestApi {
     }
 
     @GetMapping("/{id}")
-    public CustomResponse getUniverseById(@PathVariable(value = "id") long id) {
+    public CustomResponse getUniverseById(@PathVariable(value = "id") String id) {
         Optional<UnivFamily> univFamily = univFamilyService.findUnivFamilyById(id);
         if (univFamily != null)
             return new CustomResponse("univFamily", univFamily);
@@ -49,7 +49,7 @@ public class UnivFamilyRestApi {
     }
 
     @DeleteMapping("/{id}")
-    public CustomResponse deleteUnivFamily(@PathVariable(value = "id") long id) {
+    public CustomResponse deleteUnivFamily(@PathVariable(value = "id") String id) {
         try {
             univFamilyService.deleteUnivFamilyById(id);
             return new CustomResponse("success", "successfully deleted with id:" + id);
@@ -60,7 +60,7 @@ public class UnivFamilyRestApi {
     }
 
     @GetMapping("/familiesOfUniverse/{id}")
-    public CustomResponse getFamiliesByUId(@PathVariable(value = "id") long id) {
+    public CustomResponse getFamiliesByUId(@PathVariable(value = "id") String id) {
         List<Optional<Family>> families = univFamilyService.findFamiliesByUId(id);
         if (families.size() != 0) {
             return new CustomResponse("familiesOfUniverse", families);
@@ -68,7 +68,7 @@ public class UnivFamilyRestApi {
     }
 
     @GetMapping("familyPower/{id}")
-    public CustomResponse getFamiliePowerOfAllUniverses(@PathVariable(value = "id") Long id) {
+    public CustomResponse getFamiliePowerOfAllUniverses(@PathVariable(value = "id") String id) {
         List<Object[]> powerMap = univFamilyService.findFamilyPowerOfAllUniverses(id);
         if (powerMap.size() != 0)
             return new CustomResponse("familyPowerMapByUniverseKey", powerMap);
@@ -77,7 +77,7 @@ public class UnivFamilyRestApi {
     }
 
     @PostMapping("balanceFamily/{id}")
-    public CustomResponse balanceFamily(@PathVariable(value = "id") Long id) {
+    public CustomResponse balanceFamily(@PathVariable(value = "id") String id) {
         boolean done = univFamilyService.balanceFamily(id);
         if (done)
             return new CustomResponse("balanceFamily", "balancing family successfull");

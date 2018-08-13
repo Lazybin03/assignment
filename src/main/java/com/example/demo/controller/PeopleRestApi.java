@@ -27,7 +27,7 @@ public class PeopleRestApi {
 
 
     @GetMapping("/{id}")
-    public CustomResponse getPersonById(@PathVariable(value = "id") long id) {
+    public CustomResponse getPersonById(@PathVariable(value = "id") String id) {
         Optional<Person> person = peopleService.findPeopleById(id);
         if (person != null)
             return new CustomResponse("person", person);
@@ -45,7 +45,7 @@ public class PeopleRestApi {
     }
 
     @DeleteMapping("/{id}")
-    public CustomResponse deletePerson(@PathVariable(value = "id") long id) {
+    public CustomResponse deletePerson(@PathVariable(value = "id") String id) {
         try {
             peopleService.deletePersonById(id);
             return new CustomResponse("Success", "successfully deleted the person with id:" + id);

@@ -10,7 +10,7 @@ public interface UniverseService {
     public List<Universe> getAllUniverse();
     public Universe createUnivrese(Universe universe);
 
-    public void deleteUniverse(long id);
+    public void deleteUniverse(String id);
 
-    public Optional<Universe> findUnivreseById(long id);
+    public Optional<Universe> findUnivreseById(String id);
 }

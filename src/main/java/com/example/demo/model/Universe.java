@@ -9,14 +9,13 @@ import javax.validation.constraints.NotNull;
 @Table(name = "universes", indexes = {@Index(name = "id", unique = true, columnList = "id")})
 
 public class Universe {
-    @NotNull
     @Id
-    private Long id;
+    private String id;
     @NotBlank
     private String univName;
     private String univDescription;
 
-    public Universe(Long id, @NotBlank String univName, String univDescription) {
+    public Universe(String id, @NotBlank String univName, String univDescription) {
         this.id = id;
         this.univName = univName;
         this.univDescription = univDescription;
@@ -25,11 +24,11 @@ public class Universe {
     public Universe() {
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

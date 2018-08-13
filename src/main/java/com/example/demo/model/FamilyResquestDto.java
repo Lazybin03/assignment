@@ -1,27 +1,17 @@
 package com.example.demo.model;
 
 public class FamilyResquestDto {
-    private long id;
     private String name;
     private String description;
-    private long univId;
+    private String univId;
 
-    public FamilyResquestDto(long id, String name, String description, long univId) {
-        this.id = id;
+    public FamilyResquestDto(String name, String description, String univId) {
         this.name = name;
         this.description = description;
         this.univId = univId;
     }
 
     public FamilyResquestDto() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -40,11 +30,11 @@ public class FamilyResquestDto {
         this.description = description;
     }
 
-    public long getUnivId() {
+    public String getUnivId() {
         return univId;
     }
 
-    public void setUnivId(long univId) {
+    public void setUnivId(String univId) {
         this.univId = univId;
     }
 }

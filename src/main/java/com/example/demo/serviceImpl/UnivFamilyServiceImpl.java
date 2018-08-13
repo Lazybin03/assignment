@@ -37,7 +37,7 @@ public class UnivFamilyServiceImpl implements UnivFamilyService {
     }
 
     @Transactional
-    public Optional<UnivFamily> findUnivFamilyById(long id) {
+    public Optional<UnivFamily> findUnivFamilyById(String id) {
         return univFamilyRepository.findById(id);
     }
 
@@ -46,6 +46,7 @@ public class UnivFamilyServiceImpl implements UnivFamilyService {
         try {
             univFamily.setUniverseId(universeRepository.findById(univFamily.getUniverseId()).get().getId());
             univFamily.setUniverseId(familyRepository.findById(univFamily.getFamilyId()).get().getId());
+            univFamily.setId(univFamily.getFamilyId() + univFamily.getUniverseId());
             return univFamilyRepository.save(univFamily);
 
         } catch (Exception ex) {
@@ -55,12 +56,12 @@ public class UnivFamilyServiceImpl implements UnivFamilyService {
     }
 
     @Transactional
-    public void deleteUnivFamilyById(long id) {
+    public void deleteUnivFamilyById(String id) {
         univFamilyRepository.deleteById(id);
     }
 
     @Transactional
-    public List<Optional<Family>> findFamiliesByUId(long id) {
+    public List<Optional<Family>> findFamiliesByUId(String id) {
         List<Optional<Family>> result = new ArrayList<>();
         List<UnivFamily> univFamilies = univFamilyRepository.findByUniverseId(id);
         for (UnivFamily univFamily : univFamilies) {
@@ -70,15 +71,15 @@ public class UnivFamilyServiceImpl implements UnivFamilyService {
     }
 
     @Transactional
-    public List<Object[]> findFamilyPowerOfAllUniverses(Long id) {
+    public List<Object[]> findFamilyPowerOfAllUniverses(String id) {
         List<Object[]> objects = peopleRepository.findFamilyPowerOfAllUniverses(id);
         return objects;
     }
 
     @Transactional
-    public boolean balanceFamily(Long id) {
+    public boolean balanceFamily(String id) {
         List<Person> people = peopleRepository.findByFamilyId(id);
-        Set<Long> univserseSet = new HashSet<>();
+        Set<String> univserseSet = new HashSet<>();
         List<PowerPack> powerset = new LinkedList<>();
         int sum = 0;
         int i = 0;
@@ -96,8 +97,8 @@ public class UnivFamilyServiceImpl implements UnivFamilyService {
         sum_part.set(0, powerset.get(0).getPower());
         if ((k == 1) || (n >= k && sum % k == 0 && canBeBalanced(n, k, 1, sum / k, powerset))) {
             List<List<PowerPack>> result = getSubSet(n, k, powerset);
-            Iterator<Long> itr = univserseSet.iterator();
-            long univId = 0;
+            Iterator<String> itr = univserseSet.iterator();
+            String univId = "";
             for (List<PowerPack> subset : result) {
                 if (itr.hasNext()) {
                     univId = itr.next();

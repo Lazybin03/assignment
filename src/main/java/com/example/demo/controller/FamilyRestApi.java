@@ -28,7 +28,7 @@ public class FamilyRestApi {
     }
 
     @GetMapping("/{id}")
-    public CustomResponse getFamilyById(@PathVariable(value = "id") Long id) {
+    public CustomResponse getFamilyById(@PathVariable(value = "id") String id) {
         Optional<Family> family = familyService.findFamilyById(id);
         if (family == null)
             throw new ResourceNotFoundException("family", "Not able to find any family with id:" + id);
@@ -46,7 +46,7 @@ public class FamilyRestApi {
     }
 
     @DeleteMapping("/{id}")
-    public CustomResponse deleteNote(@PathVariable(value = "id") Long id) {
+    public CustomResponse deleteNote(@PathVariable(value = "id") String id) {
         try {
             familyService.deleteFamilyById(id);
             return new CustomResponse("success", "successfully deleted with id:" + id);
