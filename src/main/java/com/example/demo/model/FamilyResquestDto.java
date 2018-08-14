@@ -1,14 +1,16 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 public class FamilyResquestDto {
     private String name;
     private String description;
-    private String univId;
+    private List<String> univIds;
 
-    public FamilyResquestDto(String name, String description, String univId) {
+    public FamilyResquestDto(String name, String description, List<String> univIds) {
         this.name = name;
         this.description = description;
-        this.univId = univId;
+        this.univIds = univIds;
     }
 
     public FamilyResquestDto() {
@@ -30,11 +32,12 @@ public class FamilyResquestDto {
         this.description = description;
     }
 
-    public String getUnivId() {
-        return univId;
+
+    public List<String> getUnivIds() {
+        return univIds;
     }
 
-    public void setUnivId(String univId) {
-        this.univId = univId;
+    public void setUnivIds(List<String> univIds) {
+        this.univIds = univIds;
     }
 }

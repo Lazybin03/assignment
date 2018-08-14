@@ -5,6 +5,7 @@ import com.example.demo.model.UnivFamily;
 
 import java.util.List;
 
+import java.util.Map;
 import java.util.Optional;
 
 public interface UnivFamilyService {
@@ -16,9 +17,9 @@ public interface UnivFamilyService {
 
     public void deleteUnivFamilyById(String id);
 
-    List<Optional<Family>> findFamiliesByUId(String id);
+    List<Family> findFamiliesByUId(String id);
 
-    List<Object[]> findFamilyPowerOfAllUniverses(String id);
+    List<List<Map<String, String>>> findFamilyPowerOfAllUniverses(String id);
 
     boolean balanceFamily(String id);
 }

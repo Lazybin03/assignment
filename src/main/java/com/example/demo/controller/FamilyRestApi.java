@@ -24,7 +24,7 @@ public class FamilyRestApi {
         List<Family> families = familyService.getAllFamilies();
         if (families.size() != 0)
             return new CustomResponse("families", families);
-        else throw new ResourceNotFoundException("family", "There is people data in tha database");
+        else throw new ResourceNotFoundException("family", "There is families data in tha database");
     }
 
     @GetMapping("/{id}")
@@ -36,7 +36,7 @@ public class FamilyRestApi {
     }
 
     @PostMapping("/family")
-    public CustomResponse createFamily(@Valid @RequestBody FamilyResquestDto family) {
+    public CustomResponse createFamily(@Valid @RequestBody Family family) {
         Family savedFamily = familyService.createFamily(family);
         if (savedFamily != null) {
             return new CustomResponse("Success", savedFamily);
@@ -54,6 +54,17 @@ public class FamilyRestApi {
 
         }
         return new CustomResponse("error", "failed to delete family with id:" + id);
+    }
+
+
+    @PostMapping("/addFamily")
+    public CustomResponse createFamilyNAddToUniverse(@Valid @RequestBody FamilyResquestDto family) {
+
+        Family savedFamily = familyService.createFamilyNAddToUniverse(family);
+        if (savedFamily != null)
+            return new CustomResponse("Success", savedFamily);
+
+        return new CustomResponse("error", "failed to save family");
     }
 
 

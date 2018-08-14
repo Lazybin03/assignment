@@ -2,8 +2,8 @@ package com.example.demo.utills;
 
 import java.util.UUID;
 
-public class UniverseIdGenarotor {
+public class UnivFamilyIdGenerator {
     public static String getId(){
-        return "UNIV"+ UUID.randomUUID().toString();
+        return "UF-"+ UUID.randomUUID().toString();
     }
 }

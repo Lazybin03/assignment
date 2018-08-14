@@ -4,20 +4,22 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "univFamily", indexes = {@Index(name = "universeId", unique = true, columnList = "universeId"),
-        @Index(name = "familyId", unique = true, columnList = "familyId")})
+@Table(name = "univ_family", indexes = {@Index(name = "universeId", unique = false, columnList = "universeId"),
+        @Index(name = "familyId", unique = false, columnList = "familyId")})
 
 
 public class UnivFamily {
     @Id
-    @NotNull
+    @Column(name = "id", unique = true)
     private String id;
     @NotNull
+    @Column(name = "universeId", unique = false)
     private String universeId;
     @NotNull
+    @Column(name = "familyId", unique = false)
     private String familyId;
 
-    public UnivFamily(@NotNull String id, @NotNull String universeId, @NotNull String familyId) {
+    public UnivFamily(String id, @NotNull String universeId, @NotNull String familyId) {
         this.id = id;
         this.universeId = universeId;
         this.familyId = familyId;

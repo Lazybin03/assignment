@@ -10,13 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.ws.rs.POST;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("rest/univFamily")
+@RequestMapping("rest/univFamilies")
 public class UnivFamilyRestApi {
     @Autowired
     UnivFamilyService univFamilyService;
@@ -38,8 +37,8 @@ public class UnivFamilyRestApi {
         else throw new ResourceNotFoundException("univFamily", "There is univFamily with id:" + id);
     }
 
-    @PostMapping("/universe")
-    public CustomResponse createUniverse(@Valid @RequestBody UnivFamily univFamily) {
+    @PostMapping("/univfamily")
+    public CustomResponse createUnivFamily(@Valid @RequestBody UnivFamily univFamily) {
         UnivFamily savedUnivFamily = univFamilyService.createUniFamily(univFamily);
         if (savedUnivFamily != null) {
             return new CustomResponse("success", univFamily);
@@ -61,7 +60,7 @@ public class UnivFamilyRestApi {
 
     @GetMapping("/familiesOfUniverse/{id}")
     public CustomResponse getFamiliesByUId(@PathVariable(value = "id") String id) {
-        List<Optional<Family>> families = univFamilyService.findFamiliesByUId(id);
+        List<Family> families = univFamilyService.findFamiliesByUId(id);
         if (families.size() != 0) {
             return new CustomResponse("familiesOfUniverse", families);
         } else throw new ResourceNotFoundException("Families", "there is no data found for the universe id:" + id);
@@ -69,7 +68,7 @@ public class UnivFamilyRestApi {
 
     @GetMapping("familyPower/{id}")
     public CustomResponse getFamiliePowerOfAllUniverses(@PathVariable(value = "id") String id) {
-        List<Object[]> powerMap = univFamilyService.findFamilyPowerOfAllUniverses(id);
+        List<List<Map<String, String>>> powerMap = univFamilyService.findFamilyPowerOfAllUniverses(id);
         if (powerMap.size() != 0)
             return new CustomResponse("familyPowerMapByUniverseKey", powerMap);
         else throw new ResourceNotFoundException("power", "there is no data of power for the family id:" + id);
@@ -85,5 +84,6 @@ public class UnivFamilyRestApi {
             return new CustomResponse("balanceFamily", "Its not possible to balance the family");
 
     }
+
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Repository
@@ -20,6 +21,10 @@ public interface PeopleRepository extends JpaRepository<Person, String> {
     @Query(value = "select p.univId , sum(p.power) as totalPower from Person p where p.familyId=:id group by p.univId")
     public List<Object[]> findFamilyPowerOfAllUniverses(@Param("id") String id);
 
+    @Query(value = "select p.univId as univId , sum(p.power) as totalPower from Person p where p.familyId=:id group by p.univId")
+    public List<List<Map<String, String>>> findFamilyPowerOfAllUniverse(@Param("id") String id);
+
+
     @Modifying
     @Query(value = "update Person p set p.power=:power where p.id=:id")
     public void updatePower(@Param("id") String id, @Param("power") String power);
@@ -28,5 +33,18 @@ public interface PeopleRepository extends JpaRepository<Person, String> {
     @Query(value = "update Person p set p.univId=:univId where p.id=:id")
     public void updateUniverse(@Param("id") String id, @Param("univId") String univId);
 
+//    @Modifying
+//    @Query(value = "update Person p set p.univId=:univId where p.id in (:id)",nativeQuery = true)
+//    public void updateUniverse(@Param("peopleId") List<String> id, @Param("univId") String univId);
+
+
+    @Modifying
+    public void deleteAllByUnivId(String id);
+
+    @Modifying
+    public void deleteAllByFamilyId(String id);
+
+    @Modifying
+    public void deleteAllByFamilyIdAndUnivId(@Param("familyId") String familyId, @Param("univId") String univId);
 
 }

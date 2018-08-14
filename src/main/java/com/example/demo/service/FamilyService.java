@@ -13,9 +13,11 @@ public interface FamilyService {
 
     public Optional<Family> findFamilyById(String id);
 
-    public Family createFamily(FamilyResquestDto family);
+    public Family createFamily(Family family);
 
     public void deleteFamilyById(String id);
+
+    public Family createFamilyNAddToUniverse(FamilyResquestDto familyResquestDto);
 
 
 }
