@@ -57,30 +57,31 @@ public class FamilyServiceImpl implements FamilyService {
         Family family = new Family();
         try {
             List<Universe> universeList = universeRepository.findAll();
-            Set<String> universeIdSet = new HashSet<>();
-            for (Universe univ : universeList) {
-                universeIdSet.add(univ.getId());
-            }
-            family.setId(FamilyIdGenerator.getId());
-            family.setName(familyResquestDto.getName());
-            family.setDescription(familyResquestDto.getDescription());
-            family = familyRepository.save(family);
-            List<String> ids = familyResquestDto.getUnivIds();
-            List<UnivFamily> univFamilyList = new ArrayList<>();
-            if (ids != null && ids.size() != 0) {
-                for (String id : ids) {
-                    if (universeIdSet.contains(id)) {
-                        UnivFamily univFamily = new UnivFamily();
-                        univFamily.setId(UnivFamilyIdGenerator.getId());
-                        univFamily.setFamilyId(family.getId());
-                        univFamily.setUniverseId(id);
-                        univFamilyList.add(univFamily);
-                    }
+            if (universeList != null && universeList.size() != 0) {
+                Set<String> universeIdSet = new HashSet<>();
+                for (Universe univ : universeList) {
+                    universeIdSet.add(univ.getId());
                 }
-                univFamilyRepository.saveAll(univFamilyList);
+                family.setId(FamilyIdGenerator.getId());
+                family.setName(familyResquestDto.getName());
+                family.setDescription(familyResquestDto.getDescription());
+                family = familyRepository.save(family);
+                List<String> ids = familyResquestDto.getUnivIds();
+                List<UnivFamily> univFamilyList = new ArrayList<>();
+                if (ids != null && ids.size() != 0) {
+                    for (String id : ids) {
+                        if (universeIdSet.contains(id)) {
+                            UnivFamily univFamily = new UnivFamily();
+                            univFamily.setId(UnivFamilyIdGenerator.getId());
+                            univFamily.setFamilyId(family.getId());
+                            univFamily.setUniverseId(id);
+                            univFamilyList.add(univFamily);
+                        }
+                    }
+                    univFamilyRepository.saveAll(univFamilyList);
+                }
+                return family;
             }
-            return family;
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
