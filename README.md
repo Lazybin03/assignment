@@ -5,6 +5,7 @@ add universe
 endpoint:
 rest/universe/universe
 request:
+
 {
   "univName": “planet”,
   "univDescription": "hello"
@@ -12,7 +13,8 @@ request:
 
 
 add family with out universe id::it will create a family 
-endpoint:rest/families/family
+endpoint:
+rest/families/family
 
 {
  "name": "FamilyOne”,
@@ -20,7 +22,9 @@ endpoint:rest/families/family
 }
 
 add family and add it to universe ::it will create a family and link this family with Unvierse ,If any of the Unvierse doesn't exist it wont create any family.
-endpoint:rest/families/addFamily
+endpoint:
+rest/families/addFamily
+
 {
   "name": "FamilyThree",
   "univIds": ["UNIV-4375671e-aa07-44fe-85d5-00f425416500”,”UNIV-4375671e-aa07-44fe-85d5-00f425416500”],
@@ -37,7 +41,9 @@ rest/univFamilies/univfamily
 
 
 add person::it will create a person only if the family and the universe exist and they are link to each other
-endpoint:rest/people/person request: {
+endpoint:rest/people/person
+
+{
   "name": “apurba saha“,
   "power": 100,
   "univId":"UNIV-4375671e-aa07-44fe-85d5-00f425416500",
