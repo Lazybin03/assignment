@@ -65,7 +65,6 @@ public class FamilyServiceImpl implements FamilyService {
                 family.setId(FamilyIdGenerator.getId());
                 family.setName(familyResquestDto.getName());
                 family.setDescription(familyResquestDto.getDescription());
-                family = familyRepository.save(family);
                 List<String> ids = familyResquestDto.getUnivIds();
                 List<UnivFamily> univFamilyList = new ArrayList<>();
                 if (ids != null && ids.size() != 0) {
@@ -78,9 +77,12 @@ public class FamilyServiceImpl implements FamilyService {
                             univFamilyList.add(univFamily);
                         }
                     }
-                    univFamilyRepository.saveAll(univFamilyList);
                 }
-                return family;
+                if (univFamilyList.size() == familyResquestDto.getUnivIds().size()) {
+                    family = familyRepository.save(family);
+                    univFamilyRepository.saveAll(univFamilyList);
+                    return family;
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
